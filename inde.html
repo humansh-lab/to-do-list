@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-3xl glassmorphic-card p-10">
+        <h1 class="text-5xl font-extrabold text-white mb-6 text-center font-inter">Team To-Do List</h1>
+        <div class="text-center mb-6">
+            <button id="addMemberBtn" class="glassmorphic-btn text-white text-base hover:text-magenta font-inter transition-transform px-8 py-3">Add New Member</button>
+        </div>
+        
+        <!-- Task Input Form -->
+        <div class="mb-10 relative">
+            <div class="flex flex-col gap-5">
+                <input type="text" id="taskInput" placeholder="Enter task description" class="glassmorphic-input p-4 text-white font-rubik focus:outline-none focus:ring-2 focus:ring-teal">
+                <div class="flex gap-4 justify-center">
+                    <select id="teamMember" class="glassmorphic-input p-4 text-white font-rubik focus:outline-none focus:ring-2 focus:ring-teal min-w-[160px]">
+                        <option value="">Select Team Member</option>
+                    </select>
+                    <select id="priority" class="glassmorphic-input p-4 text-white font-rubik focus:outline-none focus:ring-2 focus:ring-teal min-w-[160px]">
+                        <option value="">Select Priority</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                    <button id="addTaskBtn" class="glassmorphic-btn text-white px-6 py-3 font-inter transition-transform">Add Task</button>
+                </div>
+            </div>
+            <div id="loadingSpinner" class="hidden absolute inset-0 flex items-center justify-center">
+                <div class="w-6 h-6 border-4 border-t-lime border-gray-600 rounded-full animate-spin"></div>
+            </div>
+        </div>
+
+        <!-- Task List -->
+        <ul id="taskList" class="space-y-5"></ul>
+
+        <!-- Add Member Modal -->
+        <div id="memberModal" class="modal fixed inset-0 flex items-center justify-center">
+            <div class="modal-content glassmorphic rounded-3xl p-10 w-full max-w-md">
+                <h2 class="text-2xl font-semibold text-white mb-6 font-inter">Add New Team Member</h2>
+                <input type="text" id="memberName" placeholder="Enter member name" class="glassmorphic-input p-4 w-full text-white font-rubik mb-4 focus:outline-none">
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 font-rubik mb-2">Avatar Source</label>
+                    <div class="flex gap-4">
+                        <label class="flex items-center gap-2 text-white font-rubik">
+                            <input type="radio" name="avatarSource" value="url" checked class="radio-input">
+                            URL
+                        </label>
+                        <label class="flex items-center gap-2 text-white font-rubik">
+                            <input type="radio" name="avatarSource" value="upload" class="radio-input">
+                            Upload
+                        </label>
+                    </div>
+                </div>
+                <input type="text" id="memberAvatarUrl" placeholder="Enter avatar URL" class="glassmorphic-input p-4 w-full text-white font-rubik mb-4 focus:outline-none">
+                <input type="file" id="memberAvatarFile" accept="image/*" class="glassmorphic-input p-4 w-full text-white font-rubik mb-4 hidden">
+                <div class="flex gap-4 justify-center">
+                    <button id="saveMemberBtn" class="glassmorphic-btn text-white px-6 py-3 font-inter transition-transform">Save</button>
+                    <button id="cancelMemberBtn" class="glassmorphic-btn text-gray-500 px-6 py-3 font-inter transition-transform">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
